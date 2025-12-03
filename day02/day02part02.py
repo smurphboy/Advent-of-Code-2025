@@ -16,19 +16,23 @@ def main():
                 for indid in list(range(int(id1), int(id2)+1)):
                     if testid(indid):
                         totalid = totalid + indid
-                        print(indid)
         print(totalid)
 
 def testid(indid):
-    '''returns if an id is repeated or not'''
+    '''returns if an id is repeated more than twice or not'''
+    # print(str(indid))
+    # Initialize result as False
+    res = False
 
-    if len(str(indid)) % 2 == 0: # even length
-        # print("Even:", indid, len(str(indid)))
-        # check halves are same
-        if str(indid)[:len(str(indid))//2] == str(indid)[len(str(indid))//2:]:
-            # print("True: ", indid)
-            return True
-    return False # odd lengths cannot be repeated
+    # Iterate through possible lengths of substrings
+    for i in range(1, len(str(indid)) // 2 + 1):
+        # Check if current length divides the string evenly
+        if len(str(indid)) % i == 0:
+            # Check if the substring repeats to form the string
+            if str(indid)[:i] * (len(str(indid)) // i) == (str(indid)):
+                res = True
+                break
+    return res
 
 if __name__ == '__main__':
     main()
